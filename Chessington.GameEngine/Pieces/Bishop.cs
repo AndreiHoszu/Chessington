@@ -13,6 +13,44 @@ namespace Chessington.GameEngine.Pieces
             var moves = Enumerable.Empty<Square>();
             var piece = board.FindPiece(this);
 
+            for (var i = piece.Row + 1; i < 8; i++)
+            {
+                if (board.GetPiece(new Square(i, i)) != null)
+                {
+                    break;
+                }
+
+                moves = moves.Concat(new[] { new Square(i, i) });
+            }
+
+            for (var i = piece.Row - 1; i >= 0; i--)
+            {
+                if (board.GetPiece(new Square(i, i)) != null)
+                {
+                    break;
+                }
+                moves = moves.Concat(new[] { new Square(i, i) });
+            }
+
+            for (var i = piece.Col + 1; i < 8; i++)
+            {
+                if (board.GetPiece(new Square(8 - i, i)) != null)
+                {
+                    break;
+                }
+                moves = moves.Concat(new[] { new Square(8 - i, i) });
+            }
+
+            for (var i = piece.Col - 1; i >= 1; i--)
+            {
+                if (board.GetPiece(new Square(8 - i, i)) != null)
+                {
+                    break;
+                }
+                moves = moves.Concat(new[] { new Square(8 - i, i) });
+            }
+
+            /*
             for (var i = 0; i < 8; i++)
             {
                 if (piece.Row != i)
@@ -28,6 +66,7 @@ namespace Chessington.GameEngine.Pieces
                     moves = moves.Concat(new[] { new Square(i, 8 - i) });
                 }
             }
+            */
 
             return moves;
         }
