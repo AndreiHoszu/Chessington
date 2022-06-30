@@ -15,11 +15,19 @@ namespace Chessington.GameEngine.Pieces
 
             if (this.Player.Equals(Player.Black))
             {
-                return new[] { new Square(piece.Row + 1, piece.Col) };
+                moves = moves.Concat( new[] {new Square(piece.Row + 1, piece.Col) });
+                if(piece.Row == 1)
+                {
+                    moves = moves.Concat(new[] { new Square(piece.Row + 2, piece.Col) });
+                }
             }
             else
             {
-                return new[] { new Square(piece.Row - 1, piece.Col) };
+                moves = moves.Concat( new[] { new Square(piece.Row - 1, piece.Col) });
+                if (piece.Row == 7)
+                {
+                    moves = moves.Concat(new[] { new Square(piece.Row - 2, piece.Col) });
+                }
             }
 
             return moves;
