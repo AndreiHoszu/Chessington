@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Chessington.GameEngine.Pieces
@@ -13,57 +14,84 @@ namespace Chessington.GameEngine.Pieces
             var moves = Enumerable.Empty<Square>();
             var piece = board.FindPiece(this);
 
-            for (var i = piece.Row + 1; i < 8; i++)
+            for (var i = 1; i < 8; i++)
             {
-                if (board.GetPiece(new Square(i, i)) != null)
+                var row = piece.Row + i;
+                var col = piece.Col + i;
+                if (row >= 0 && row <= 7 && col >= 0 && col <= 7)
                 {
-                    if (board.GetPiece(new Square(i, i)).Player != board.GetPiece(piece).Player)
+                    if (board.GetPiece(new Square(row, col)) != null)
                     {
-                        moves = moves.Concat(new[] { new Square(i, i) });
-                    }
-                    break;
-                }
+                        if (board.GetPiece(new Square(row, col)).Player != board.GetPiece(piece).Player)
+                        {
+                            moves = moves.Concat(new[] { new Square(row, col) });
+                        }
 
-                moves = moves.Concat(new[] { new Square(i, i) });
+                        break;
+                    }
+
+                    moves = moves.Concat(new[] { new Square(row, col) });
+                }
             }
 
-            for (var i = piece.Row - 1; i >= 0; i--)
+            for (var i = 1; i < 8; i++)
             {
-                if (board.GetPiece(new Square(i, i)) != null)
+                var row = piece.Row - i;
+                var col = piece.Col - i;
+                if (row >= 0 && row <= 7 && col >= 0 && col <= 7)
                 {
-                    if (board.GetPiece(new Square(i, i)).Player != board.GetPiece(piece).Player)
+                    if (board.GetPiece(new Square(row, col)) != null)
                     {
-                        moves = moves.Concat(new[] { new Square(i, i) });
+                        if (board.GetPiece(new Square(row, col)).Player != board.GetPiece(piece).Player)
+                        {
+                            moves = moves.Concat(new[] { new Square(row, col) });
+                        }
+
+                        break;
                     }
-                    break;
+
+                    moves = moves.Concat(new[] { new Square(row, col) });
                 }
-                moves = moves.Concat(new[] { new Square(i, i) });
             }
 
-            for (var i = piece.Col + 1; i < 8; i++)
+            for (var i = 1; i < 8; i++)
             {
-                if (board.GetPiece(new Square(8 - i, i)) != null)
+                var row = piece.Row + i;
+                var col = piece.Col - i;
+                if (row >= 0 && row <= 7 && col >= 0 && col <= 7)
                 {
-                    if (board.GetPiece(new Square(8 - i, i)).Player != board.GetPiece(piece).Player)
+                    if (board.GetPiece(new Square(row, col)) != null)
                     {
-                        moves = moves.Concat(new[] { new Square(8 - i, i) });
-                    }
-                    break;
-                }
-                moves = moves.Concat(new[] { new Square(8 - i, i) });
-            }
+                        if (board.GetPiece(new Square(row, col)).Player != board.GetPiece(piece).Player)
+                        {
+                            moves = moves.Concat(new[] { new Square(row, col) });
+                        }
 
-            for (var i = piece.Col - 1; i >= 1; i--)
-            {
-                if (board.GetPiece(new Square(8 - i, i)) != null)
-                {
-                    if (board.GetPiece(new Square(8 - i, i)).Player != board.GetPiece(piece).Player)
-                    {
-                        moves = moves.Concat(new[] { new Square(8 - i, i) });
+                        break;
                     }
-                    break;
+
+                    moves = moves.Concat(new[] { new Square(row, col) });
                 }
-                moves = moves.Concat(new[] { new Square(8 - i, i) });
+            }
+            
+            for (var i = 1; i < 8; i++)
+            {
+                var row = piece.Row - i;
+                var col = piece.Col + i;
+                if (row >= 0 && row <= 7 && col >= 0 && col <= 7)
+                {
+                    if (board.GetPiece(new Square(row, col)) != null)
+                    {
+                        if (board.GetPiece(new Square(row, col)).Player != board.GetPiece(piece).Player)
+                        {
+                            moves = moves.Concat(new[] { new Square(row, col) });
+                        }
+
+                        break;
+                    }
+
+                    moves = moves.Concat(new[] { new Square(row, col) });
+                }
             }
 
             return moves;

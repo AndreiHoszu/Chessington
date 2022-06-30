@@ -21,6 +21,34 @@ namespace Chessington.GameEngine.Tests.Pieces
         }
 
         [Test]
+        public void WhitePawns_CanBecomeQueen()
+        {
+            var board = new Board();
+            var pawn = new Pawn(Player.White);
+            var queen = new Queen(Player.White);
+            board.AddPiece(Square.At(1, 0), pawn);
+
+            board.MovePiece(Square.At(1, 0), Square.At(0, 0));
+
+            board.GetPiece(Square.At(0, 0)).GetType().Should().Be(queen.GetType());
+        }
+
+        [Test]
+        public void BlackPawns_CanBecomeQueen()
+        {
+            var board = new Board();
+            var pawn = new Pawn(Player.Black);
+            var queen = new Queen(Player.Black);
+            board.AddPiece(Square.At(1, 0), new Pawn(Player.White));
+            board.MovePiece(Square.At(1, 0), Square.At(2, 0));
+
+            board.AddPiece(Square.At(6, 0), pawn);
+            board.MovePiece(Square.At(6, 0), Square.At(7, 0));
+
+            board.GetPiece(Square.At(7, 0)).GetType().Should().Be(queen.GetType());
+        }
+
+        [Test]
         public void BlackPawns_CanMoveOneSquareDown()
         {
             var board = new Board();
@@ -37,7 +65,7 @@ namespace Chessington.GameEngine.Tests.Pieces
         {
             var board = new Board();
             var pawn = new Pawn(Player.White);
-            board.AddPiece(Square.At(7, 5), pawn);
+            board.AddPiece(Square.At(6, 5), pawn);
 
             var moves = pawn.GetAvailableMoves(board);
 
@@ -61,13 +89,13 @@ namespace Chessington.GameEngine.Tests.Pieces
         {
             var board = new Board();
             var pawn = new Pawn(Player.White);
-            board.AddPiece(Square.At(7, 2), pawn);
+            board.AddPiece(Square.At(6, 2), pawn);
 
-            pawn.MoveTo(board, Square.At(6, 2));
+            pawn.MoveTo(board, Square.At(5, 2));
             var moves = pawn.GetAvailableMoves(board).ToList();
 
             moves.Should().HaveCount(1);
-            moves.Should().Contain(square => square.Equals(Square.At(5, 2)));
+            moves.Should().Contain(square => square.Equals(Square.At(4, 2)));
         }
 
         [Test]

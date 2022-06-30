@@ -34,6 +34,31 @@ namespace Chessington.GameEngine.Tests.Pieces
         }
 
         [Test]
+        public void Bishop_CanMove_Diagonally_Extra()
+        {
+            var board = new Board();
+            var bishop = new Bishop(Player.White);
+            board.AddPiece(Square.At(5, 5), bishop);
+
+            var moves = bishop.GetAvailableMoves(board);
+
+            var expectedMoves = new List<Square>();
+            
+            for (var i = 0; i < 8; i++)
+                expectedMoves.Add(Square.At(i, i));
+            
+            expectedMoves.Add(Square.At(4, 6));
+            expectedMoves.Add(Square.At(3, 7));
+            expectedMoves.Add(Square.At(6, 4));
+            expectedMoves.Add(Square.At(7, 3));
+
+            //Get rid of our starting location.
+            expectedMoves.RemoveAll(s => s == Square.At(5, 5));
+
+            moves.ShouldAllBeEquivalentTo(expectedMoves);
+        }
+
+        [Test]
         public void Bishop_CannnotPassThrough_OpposingPieces()
         {
             var board = new Board();

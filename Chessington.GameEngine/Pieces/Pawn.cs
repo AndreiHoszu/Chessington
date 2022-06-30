@@ -12,8 +12,10 @@ namespace Chessington.GameEngine.Pieces
         {
             var moves = Enumerable.Empty<Square>();
             var piece = board.FindPiece(this);
+            var i = 1;
 
-            if(this.Player.Equals(Player.Black))
+
+            if (this.Player.Equals(Player.Black))
             {
                 if(piece.Row + 1 < 8)
                 {
@@ -61,7 +63,7 @@ namespace Chessington.GameEngine.Pieces
                     {
                         moves = moves.Concat(new[] { new Square(piece.Row - 1, piece.Col) });
 
-                        if (piece.Row == 7)
+                        if (piece.Row == 6)
                         {
                             if (board.GetPiece(new Square(piece.Row - 2, piece.Col)) == null)
                             {
