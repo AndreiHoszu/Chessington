@@ -59,6 +59,17 @@ namespace Chessington.GameEngine
 
             //Move the piece and set the 'from' square to be empty.
             board[to.Row, to.Col] = board[from.Row, from.Col];
+
+            var playerColor = board[to.Row, to.Col].Player;
+
+            if(playerColor == Player.Black && board[to.Row, to.Col].GetType() == typeof(Pawn) && to.Row == 7)
+            {
+                board[to.Row, to.Col] = new Queen(board[to.Row, to.Col].Player);
+            }
+            else if (playerColor == Player.White && board[to.Row, to.Col].GetType() == typeof(Pawn) && to.Row == 0)
+            {
+                board[to.Row, to.Col] = new Queen(board[to.Row, to.Col].Player);
+            }
             board[from.Row, from.Col] = null;
 
             CurrentPlayer = movingPiece.Player == Player.White ? Player.Black : Player.White;
