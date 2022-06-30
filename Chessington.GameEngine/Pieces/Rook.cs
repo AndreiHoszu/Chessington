@@ -19,10 +19,7 @@ namespace Chessington.GameEngine.Pieces
                 {
                     moves = moves.Concat(new[] { new Square(i, piece.Col) });
                 }
-            }
 
-            for (var i = 0; i < 8; i++)
-            {
                 if (piece.Col != i)
                 {
                     moves = moves.Concat(new[] { new Square(piece.Row, i) });
