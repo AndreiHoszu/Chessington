@@ -13,20 +13,34 @@ namespace Chessington.GameEngine.Pieces
             var moves = Enumerable.Empty<Square>();
             var piece = board.FindPiece(this);
 
-            if (this.Player.Equals(Player.Black))
+            if(this.Player.Equals(Player.Black))
             {
-                moves = moves.Concat( new[] {new Square(piece.Row + 1, piece.Col) });
-                if(piece.Row == 1)
+                if(board.GetPiece(new Square(piece.Row + 1, piece.Col)) == null)
                 {
-                    moves = moves.Concat(new[] { new Square(piece.Row + 2, piece.Col) });
+                    moves = moves.Concat(new[] { new Square(piece.Row + 1, piece.Col) });
+
+                    if (piece.Row == 1)
+                    {
+                        if (board.GetPiece(new Square(piece.Row + 2, piece.Col)) == null)
+                        {
+                            moves = moves.Concat(new[] { new Square(piece.Row + 2, piece.Col) });
+                        }
+                    }
                 }
             }
             else
             {
-                moves = moves.Concat( new[] { new Square(piece.Row - 1, piece.Col) });
-                if (piece.Row == 7)
+                if(board.GetPiece(new Square(piece.Row - 1, piece.Col)) == null)
                 {
-                    moves = moves.Concat(new[] { new Square(piece.Row - 2, piece.Col) });
+                    moves = moves.Concat(new[] { new Square(piece.Row - 1, piece.Col) });
+
+                    if (piece.Row == 7)
+                    {
+                        if (board.GetPiece(new Square(piece.Row - 2, piece.Col)) == null)
+                        {
+                            moves = moves.Concat(new[] { new Square(piece.Row - 2, piece.Col) });
+                        }
+                    }
                 }
             }
 
