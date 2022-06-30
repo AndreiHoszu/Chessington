@@ -50,24 +50,6 @@ namespace Chessington.GameEngine.Pieces
                 moves = moves.Concat(new[] { new Square(8 - i, i) });
             }
 
-            /*
-            for (var i = 0; i < 8; i++)
-            {
-                if (piece.Row != i)
-                {
-                    moves = moves.Concat(new[] { new Square(i, i) });
-                }
-            }
-
-            for (var i = 1; i < 8; i++)
-            {
-                if (piece.Col != i)
-                {
-                    moves = moves.Concat(new[] { new Square(i, 8 - i) });
-                }
-            }
-            */
-
             return moves;
         }
     }
