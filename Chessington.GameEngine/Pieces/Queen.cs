@@ -17,6 +17,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(i, piece.Col)) != null)
                 {
+                    if (board.GetPiece(new Square(i, piece.Col)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(i, piece.Col) });
+                    }
                     break;
                 }
 
@@ -27,6 +31,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(i, piece.Col)) != null)
                 {
+                    if (board.GetPiece(new Square(i, piece.Col)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(i, piece.Col) });
+                    }
                     break;
                 }
                 moves = moves.Concat(new[] { new Square(i, piece.Col) });
@@ -36,6 +44,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(piece.Row, i)) != null)
                 {
+                    if (board.GetPiece(new Square(piece.Row, i)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(piece.Row, i) });
+                    }
                     break;
                 }
                 moves = moves.Concat(new[] { new Square(piece.Row, i) });
@@ -45,6 +57,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(piece.Row, i)) != null)
                 {
+                    if (board.GetPiece(new Square(piece.Row, i)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(piece.Row, i) });
+                    }
                     break;
                 }
                 moves = moves.Concat(new[] { new Square(piece.Row, i) });
@@ -54,6 +70,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(i, i)) != null)
                 {
+                    if (board.GetPiece(new Square(i, i)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(i, i) });
+                    }
                     break;
                 }
 
@@ -64,6 +84,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(i, i)) != null)
                 {
+                    if (board.GetPiece(new Square(i, i)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(i, i) });
+                    }
                     break;
                 }
                 moves = moves.Concat(new[] { new Square(i, i) });
@@ -73,6 +97,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(8 - i, i)) != null)
                 {
+                    if (board.GetPiece(new Square(8 - i, i)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(8 - i, i) });
+                    }
                     break;
                 }
                 moves = moves.Concat(new[] { new Square(8 - i, i) });
@@ -82,6 +110,10 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (board.GetPiece(new Square(8 - i, i)) != null)
                 {
+                    if (board.GetPiece(new Square(8 - i, i)).Player != board.GetPiece(piece).Player)
+                    {
+                        moves = moves.Concat(new[] { new Square(8 - i, i) });
+                    }
                     break;
                 }
                 moves = moves.Concat(new[] { new Square(8 - i, i) });
