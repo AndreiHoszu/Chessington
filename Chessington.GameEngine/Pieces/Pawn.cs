@@ -15,7 +15,7 @@ namespace Chessington.GameEngine.Pieces
 
             if(this.Player.Equals(Player.Black))
             {
-                if(board.GetPiece(new Square(piece.Row + 1, piece.Col)) == null)
+                if(piece.Row + 1 < 8 && board.GetPiece(new Square(piece.Row + 1, piece.Col)) == null)
                 {
                     moves = moves.Concat(new[] { new Square(piece.Row + 1, piece.Col) });
 
@@ -30,7 +30,7 @@ namespace Chessington.GameEngine.Pieces
             }
             else
             {
-                if(board.GetPiece(new Square(piece.Row - 1, piece.Col)) == null)
+                if(piece.Row - 1 >= 0 && board.GetPiece(new Square(piece.Row - 1, piece.Col)) == null)
                 {
                     moves = moves.Concat(new[] { new Square(piece.Row - 1, piece.Col) });
 
