@@ -15,30 +15,80 @@ namespace Chessington.GameEngine.Pieces
 
             if(this.Player.Equals(Player.Black))
             {
-                if(piece.Row + 1 < 8 && board.GetPiece(new Square(piece.Row + 1, piece.Col)) == null)
+                if(piece.Row + 1 < 8)
                 {
-                    moves = moves.Concat(new[] { new Square(piece.Row + 1, piece.Col) });
-
-                    if (piece.Row == 1)
+                    if (board.GetPiece(new Square(piece.Row + 1, piece.Col)) == null)
                     {
-                        if (board.GetPiece(new Square(piece.Row + 2, piece.Col)) == null)
+                        moves = moves.Concat(new[] { new Square(piece.Row + 1, piece.Col) });
+
+                        if (piece.Row == 1)
                         {
-                            moves = moves.Concat(new[] { new Square(piece.Row + 2, piece.Col) });
+                            if (board.GetPiece(new Square(piece.Row + 2, piece.Col)) == null)
+                            {
+                                moves = moves.Concat(new[] { new Square(piece.Row + 2, piece.Col) });
+                            }
+                        }
+                    }
+
+                    if (piece.Col + 1 < 8)
+                    {
+                        if (board.GetPiece(new Square(piece.Row + 1, piece.Col + 1)) != null)
+                        {
+                            if (board.GetPiece(new Square(piece.Row + 1, piece.Col + 1)).Player != board.GetPiece(piece).Player)
+                            {
+                                moves = moves.Concat(new[] { new Square(piece.Row + 1, piece.Col + 1) });
+                            }
+                        }
+                    }
+
+                    if (piece.Col - 1 >= 0)
+                    {
+                        if (board.GetPiece(new Square(piece.Row + 1, piece.Col - 1)) != null)
+                        {
+                            if (board.GetPiece(new Square(piece.Row + 1, piece.Col - 1)).Player != board.GetPiece(piece).Player)
+                            {
+                                moves = moves.Concat(new[] { new Square(piece.Row + 1, piece.Col - 1) });
+                            }
                         }
                     }
                 }
             }
             else
             {
-                if(piece.Row - 1 >= 0 && board.GetPiece(new Square(piece.Row - 1, piece.Col)) == null)
+                if(piece.Row - 1 >= 0)
                 {
-                    moves = moves.Concat(new[] { new Square(piece.Row - 1, piece.Col) });
-
-                    if (piece.Row == 7)
+                    if (board.GetPiece(new Square(piece.Row - 1, piece.Col)) == null)
                     {
-                        if (board.GetPiece(new Square(piece.Row - 2, piece.Col)) == null)
+                        moves = moves.Concat(new[] { new Square(piece.Row - 1, piece.Col) });
+
+                        if (piece.Row == 7)
                         {
-                            moves = moves.Concat(new[] { new Square(piece.Row - 2, piece.Col) });
+                            if (board.GetPiece(new Square(piece.Row - 2, piece.Col)) == null)
+                            {
+                                moves = moves.Concat(new[] { new Square(piece.Row - 2, piece.Col) });
+                            }
+                        }
+                    }
+
+                    if (piece.Col + 1 < 8)
+                    {
+                        if (board.GetPiece(new Square(piece.Row - 1, piece.Col + 1)) != null)
+                        {
+                            if (board.GetPiece(new Square(piece.Row - 1, piece.Col + 1)).Player != board.GetPiece(piece).Player)
+                            {
+                                moves = moves.Concat(new[] { new Square(piece.Row - 1, piece.Col + 1) });
+                            }
+                        }
+                    }
+
+                    if (piece.Col - 1 >= 0)
+                    {
+                        if (board.GetPiece(new Square(piece.Row - 1, piece.Col - 1)) != null)
+                        {
+                            if (board.GetPiece(new Square(piece.Row - 1, piece.Col - 1)).Player != board.GetPiece(piece).Player)
+                            {
+                                moves = moves.Concat(new[] { new Square(piece.Row - 1, piece.Col - 1) });
+                            }
                         }
                     }
                 }
